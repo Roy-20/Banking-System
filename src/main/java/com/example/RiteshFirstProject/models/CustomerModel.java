@@ -1,9 +1,6 @@
 package com.example.RiteshFirstProject.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="customers")
@@ -11,6 +8,7 @@ public class CustomerModel {
     @Id @GeneratedValue
     private int serialNo;
     private String name;
+    @Column(unique = true)
     private String email;
     private double currentBalance;
 

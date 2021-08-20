@@ -12,3 +12,13 @@
       <th>${sender.email}}</th>
       <th>${sender.amount}</th>
     </tr>
+
+    <form action="#" th:action="@{/transact}" th:object="${transactionForm}" method="post">
+        <label for="receiver">Name</label>
+        <select th:field="*receiver">
+         <option th:each="p : ${receivers}" th:value=${p} th:text="${p}"/>
+        </select>
+        <label for="amount">Amount</label>
+        <input type="text" th:field="*{amount}" id="amount" placeholder="Amount">
+        <input type="submit" value="SEND AMOUNT">
+    </form>
