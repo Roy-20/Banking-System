@@ -84,7 +84,7 @@ public class TestController {
        final CustomerModel receiver = customerRepository.findByEmail(transactionForm.getReceiver().split("-")[1].trim());
        final double amountToSend = transactionForm.getAmount();
        boolean result = false;
-       if(sender.getCurrentBalance() >= amountToSend){
+       if(amountToSend > 0 && sender.getCurrentBalance() >= amountToSend){
            try {
                TransactionModel transactionModel = new TransactionModel();
                transactionModel.setAmount(amountToSend);
