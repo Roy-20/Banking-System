@@ -11,8 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,12 +31,12 @@ public class TestController {
     @Autowired
     private TransactionRepository transactionRepository;
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String getHome(){
         return "home";
     }
 
-    @GetMapping("/customerdetails")
+    @GetMapping("/userDetails")
     public String getDetails(Model model){
         List<CustomerModel> customers = customerRepository.findAll();
         List<TransactionForm> formList= new ArrayList<>();
@@ -39,7 +44,7 @@ public class TestController {
             TransactionForm form = new TransactionForm();
             form.setCurrentBalance(c.getCurrentBalance());
             form.setSender(c.getName());
-            form.setEmail(c.getEmail());
+            form.setSenderEmail(c.getEmail());
             form.setSerialNo(c.getSerialNo());
             formList.add(form);
         }
@@ -50,20 +55,54 @@ public class TestController {
     @GetMapping("/txnHistory")
     public String getTxnDetails(Model model){
         List<TransactionModel> txns = transactionRepository.findAll();
+        model.addAttribute("transactions",txns);
         return "transactionHistory";
     }
 
-    @GetMapping("/initiateTxn")
-    public String submitForm(Model model) {
-        List<CustomerModel> customerModels = customerRepository.findAll();
-        List<String> userNames = customerModels.stream().map(c -> c.getName()).collect(Collectors.toList());
-        model.addAttribute("receivers",userNames);
-        model.addAttribute("transactionForm", new TransactionForm());
+    @PostMapping("/initiateTxn")
+    public String submitForm(@RequestParam("email") String email, Model model) {
+        final CustomerModel user = customerRepository.findByEmail(email);
+        TransactionForm transactionForm = new TransactionForm();
+        transactionForm.setSenderEmail(user.getEmail());
+        transactionForm.setSerialNo(user.getSerialNo());
+        transactionForm.setSender(user.getName());
+        transactionForm.setCurrentBalance(user.getCurrentBalance());
+        List<CustomerModel> userList = customerRepository.findAll();
+        userList.remove(user);
+        List<String> userNames = new ArrayList<>();
+        for (CustomerModel u:userList) {
+            userNames.add(u.getName() + " - " + u.getEmail());
+        }
+        model.addAttribute("users",userNames);
+        model.addAttribute("txnForm",transactionForm);
         return "transaction";
     }
 
     @PostMapping("/transact")
-    public ModelAndView transactAmount(@ModelAttribute("transactionForm") TransactionForm form) {
-        return null;
+    public String transactAmount(@ModelAttribute TransactionForm transactionForm, Model model) {
+       final CustomerModel sender =  customerRepository.findByEmail(transactionForm.getSenderEmail());
+       final CustomerModel receiver = customerRepository.findByEmail(transactionForm.getReceiver().split("-")[1].trim());
+       final double amountToSend = transactionForm.getAmount();
+       boolean result = false;
+       if(sender.getCurrentBalance() >= amountToSend){
+           try {
+               TransactionModel transactionModel = new TransactionModel();
+               transactionModel.setAmount(amountToSend);
+               transactionModel.setSender(sender.getName());
+               transactionModel.setReceiver(receiver.getName());
+               LocalDate todayLocalDate = LocalDate.now(ZoneId.of("Asia/Calcutta"));
+               transactionModel.setDate(Date.valueOf(todayLocalDate));
+               transactionRepository.save(transactionModel);
+               receiver.setCurrentBalance(receiver.getCurrentBalance() + amountToSend);
+               customerRepository.save(receiver);
+               sender.setCurrentBalance(sender.getCurrentBalance() - amountToSend);
+               customerRepository.save(sender);
+               result = true;
+           }catch (final Exception e){
+               result = false;
+           }
+       }
+       model.addAttribute("txnRes", result);
+       return "txnResult";
     }
 }

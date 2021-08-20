@@ -1,4 +1,5 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,19 @@
     width: 100%;
     height:auto;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
 }
 .styled-table thead tr {
     background-color: #009879;
@@ -37,6 +51,9 @@
     color: #009879;
 }
 </style>
+    <a href="/">
+        <button class="button">Banking System</button>
+    </a>
 </head>
 <table class="styled-table">
     <thead>
@@ -50,15 +67,15 @@
     </thead>
     <tbody>
 
-        <c:forEach var="form" items="${forms}">
+        <c:forEach var="data" items="${forms}">
                  <tr>
 
-                <form:form action="/transact" method="post" modelAttribute="${transactionForm}">
-                      <td>${form.serialNo}</td>
-                      <td>${form.sender}</td>
-                      <td>${form.email}</td>
-                      <td>${form.currentBalance}</td>
-                      <form input type="hidden" name="email" value=${form.email}>
+                <form:form action="/initiateTxn" method="post" modelAttribute="${transactionForm}">
+                      <td>${data.serialNo}</td>
+                      <td>${data.sender}</td>
+                      <td>${data.senderEmail}</td>
+                      <td>${data.currentBalance}</td>
+                      <input type="hidden" name="email" value=${data.senderEmail}>
                       <td><input type="submit" value="TRANSACT"></td>
                 </form:form>
                       </tr>

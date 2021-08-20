@@ -4,10 +4,27 @@ public class TransactionForm {
 
     private int serialNo;
     private String sender;
-    private String email;
+    private String senderEmail;
     private double currentBalance;
     private String receiver;
+    private String receiverEmail;
     private double amount;
+
+    public String getSenderEmail() {
+        return senderEmail;
+    }
+
+    public void setSenderEmail(String senderEmail) {
+        this.senderEmail = senderEmail;
+    }
+
+    public String getReceiverEmail() {
+        return receiverEmail;
+    }
+
+    public void setReceiverEmail(String receiverEmail) {
+        this.receiverEmail = receiverEmail;
+    }
 
     public String getSender() {
         return sender;
@@ -39,14 +56,6 @@ public class TransactionForm {
 
     public void setSerialNo(int serialNo) {
         this.serialNo = serialNo;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public double getCurrentBalance() {

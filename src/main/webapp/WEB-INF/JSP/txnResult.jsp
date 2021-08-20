@@ -1,6 +1,4 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html>
 <html>
 <head>
     <style>
@@ -17,13 +15,17 @@
             cursor: pointer;
         }
     </style>
-    <a href="/">
-        <button class="button">Banking System</button>
-    </a>
 </head>
-<a href="/userDetails">
-    <button class="button">View Customers</button>
-</a>
+<c:if test="${txnRes eq true}">
+    <b><h2 style="color:green">Transaction Successful</h2></b>
+</c:if>
+<c:if test="${txnRes eq false}">
+    <b><h2 style="color:red">Transaction Failed</h2></b>
+</c:if>
 <a href="/txnHistory">
     <button class="button">View transaction</button>
 </a>
+<a href="/">
+    <button class="button">Back to Home</button>
+</a>
+</html>
