@@ -76,13 +76,15 @@
     </tbody>
     </table>
         <div>
-         <b><p>Beneficiary Details:</p></b>
+            <b><p>Beneficiary Details:</p></b><br>
+            <form:label path="receiver">Beneficiary Name/Email:</form:label>
             <form:select path="receiver">
                 <c:forEach var="data" items="${users}">
                     <form:option value="${data}" label="${data}"/>
                 </c:forEach>
-            </form:select>
-            <form:input type="text" path="amount" id="amount" name="amount" placeholder="Enter Amount to Send"></form:input>
+            </form:select><br>
+            <form:label path="amount">Transaction Amount:</form:label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <form:input type="text" path="amount" id="amount" name="amount" placeholder="Enter Amount to Send"></form:input><br>
             <input type="submit" value="PROCEED">
         </div>
     </form:form>

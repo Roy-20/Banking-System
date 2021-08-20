@@ -19,11 +19,11 @@
     </style>
     <a href="/">
         <button class="button">Banking System</button>
-    </a>
+    </a><br>
 </head>
 <a href="/userDetails">
     <button class="button">View Customers</button>
-</a>
+</a><br>
 <a href="/txnHistory">
     <button class="button">View transaction</button>
 </a>
