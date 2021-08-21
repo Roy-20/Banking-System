@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <style>
         .styled-table {
             border-collapse: collapse;
@@ -49,10 +50,20 @@
             margin: 4px 2px;
             cursor: pointer;
         }
+        input{
+            margin: 8px 4px;
+        }
+        .recieve{
+            padding: 4px 2px;
+        }
+        .font{
+            font-family: sans-serif;
+        }
     </style>
-    <a href="/">
-        <button class="button">Banking System</button>
-    </a>
+    <i class="fas fa-home"></i>
+        <a href="/">
+            <button class="button">Home</button>
+        </a>
 </head>
 <div>
     <form:form action="/transact" method="post" modelAttribute="txnForm">
@@ -76,16 +87,16 @@
     </tbody>
     </table>
         <div>
-            <b><p>Beneficiary Details:</p></b><br>
-            <form:label path="receiver">Beneficiary Name/Email:</form:label>
-            <form:select path="receiver">
+            <b><p class="font">Beneficiary Details:</p></b><br>
+            <form:label path="receiver" class="font">Beneficiary Name/Email:</form:label>
+            <form:select path="receiver" class="recieve">
                 <c:forEach var="data" items="${users}">
                     <form:option value="${data}" label="${data}"/>
                 </c:forEach>
             </form:select><br>
-            <form:label path="amount">Transaction Amount:</form:label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <form:input type="text" path="amount" id="amount" name="amount" placeholder="Enter Amount to Send"></form:input><br>
-            <input type="submit" value="PROCEED">
+            <form:label path="amount" class="font">Transaction Amount:</form:label>
+            <form:input type="text" class="recieve" path="amount" id="amount" name="amount" placeholder="Enter Amount to Send"></form:input><br>
+            <input type="submit" value="PROCEED" class="button">
         </div>
     </form:form>
 </div>

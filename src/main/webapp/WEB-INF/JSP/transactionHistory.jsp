@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <style>
         .styled-table {
             border-collapse: collapse;
@@ -50,9 +51,10 @@
             cursor: pointer;
         }
     </style>
-    <a href="/">
-        <button class="button">Banking System</button>
-    </a>
+    <i class="fas fa-home"></i>
+            <a href="/">
+                <button class="button">Home</button>
+            </a>
 </head>
 <table class="styled-table">
     <thead>
