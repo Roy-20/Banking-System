@@ -1,13 +1,13 @@
-package com.example.RiteshFirstProject;
+package com.example.bankingsystem;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RiteshFirstProjectApplication {
+public class BankingSystemApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RiteshFirstProjectApplication.class, args);
+		SpringApplication.run(BankingSystemApplication.class, args);
 	}
 
 }

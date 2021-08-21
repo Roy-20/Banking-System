@@ -1,4 +1,4 @@
-package com.example.RiteshFirstProject.forms;
+package com.example.bankingsystem.forms;
 
 public class TransactionForm {
 

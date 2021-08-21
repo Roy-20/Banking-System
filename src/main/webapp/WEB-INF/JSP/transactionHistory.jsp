@@ -64,7 +64,7 @@
         <th>Sender</th>
         <th>Receiver</th>
         <th>Amount</th>
-        <th>Date & Time</th>
+        <th>Date</th>
     </tr>
     </thead>
     <tbody>

@@ -1,4 +1,4 @@
-package com.example.RiteshFirstProject.models;
+package com.example.bankingsystem.models;
 
 import javax.persistence.*;
 
