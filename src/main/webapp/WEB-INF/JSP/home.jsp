@@ -4,12 +4,11 @@
 <html>
 <head>
     <style>
-        #home::before{
+        img{
             content: "";
             position: absolute;
-            height: 100vh;
-            width: 100%;
-            background: url('./Bank.jpg') no-repeat center center/cover;
+            height: 98vh;
+            width: 99%;
             opacity: 0.7;
             z-index: -1;
         }
@@ -17,7 +16,7 @@
                 background-color: black;
                 color: azure;
                 margin-top: 19rem;
-                margin-left: 34rem;
+                margin-left: 32rem;
                 cursor: pointer;
                 width: 8rem;
                 height: 3rem;
@@ -38,14 +37,21 @@
             background-color: rgb(49, 44, 44);
             font-weight: bold;
         }
+        h2{
+            position:absolute;
+            margin: 1rem 25rem;
+            font-family: cursive;
+        }
     </style>
 
 </head>
-<section id="Home">
+<body>
+<h2>|| WELCOME TO GRIP BANKING SYSTEM ||</h2>
+<img src='https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmFua3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80'>
 <a href="/userDetails">
     <button class="button">View Customers</button>
 </a>
 <a href="/txnHistory">
     <button id="button">View transaction</button>
 </a>
-</section>
+</body>

@@ -3,17 +3,18 @@
 <head>
     <style>
         .button {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-        }
+                        background-color: black;
+                        color: azure;
+                        cursor: pointer;
+                        width: 8rem;
+                        height: 3rem;
+                        border-radius: 8px;
+
+                        font-family: inherit;
+                }
+        .button:hover{
+                    background-color: rgb(49, 44, 44);
+                }
     </style>
 </head>
 <c:if test="${txnRes eq true}">
